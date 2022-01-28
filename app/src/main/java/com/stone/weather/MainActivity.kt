@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun executeNetworkCall(zip: String) {
         val api=retrofit.create(ApiService::class.java)
-        api.getWeatherList(zip,"d5d1e21a7fc1077d18ef2d6b8b694b93").enqueue(object : Callback<WeatherResponse>{
+        api.getWeatherList(zip).enqueue(object : Callback<WeatherResponse>{
                 override fun onResponse(
                     call: Call<WeatherResponse>,
                     response: Response<WeatherResponse>
@@ -45,12 +45,15 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful){
                         Toast.makeText(applicationContext,"Success",Toast.LENGTH_SHORT).show()
                         textview.text=response.body()?.cityName.toString()
+                    }else{
+                        Toast.makeText(applicationContext,"fail",Toast.LENGTH_SHORT).show()
+
                     }
 
                 }
 
                 override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                    Log.i("main",t.message.toString())
+                    Log.i("mainLog",t.message.toString())
                     Toast.makeText(applicationContext,"fail",Toast.LENGTH_SHORT).show()
 
                 }

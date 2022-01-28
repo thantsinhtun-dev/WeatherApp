@@ -8,6 +8,5 @@ interface ApiService {
     @GET("weather")
     fun getWeatherList(
         @Query("zip") zipCode: String,
-        @Query("appid") appid:String
         ):Call<WeatherResponse>
 }
