@@ -7,9 +7,13 @@
         <entry key="app/src/main/res/drawable/background_condition_layout.xml" value="0.1505" />
         <entry key="app/src/main/res/drawable/background_item.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.10960144927536232" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_current_weather.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_current_weather_condition.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/fragment_forecast_weather.xml" value="0.5" />
         <entry key="app/src/main/res/layout/test.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/weather_item_layout.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/weather_item_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

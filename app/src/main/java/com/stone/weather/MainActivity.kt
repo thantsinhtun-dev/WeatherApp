@@ -2,17 +2,17 @@ package com.stone.weather
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.view.*
 import android.widget.Toast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
+import com.stone.weather.databinding.ActivityMainBinding
+import com.stone.weather.ui.CurrentWeatherCondition
+import com.stone.weather.ui.CurrentWeatherFragment
+import com.stone.weather.ui.ForecastWeatherFragment
 
 class MainActivity : AppCompatActivity() {
-//    private val textview by lazy {
+    //    private val textview by lazy {
 //        findViewById<TextView>(R.id.textview)
 //    }
 //    private val editText by lazy {
@@ -24,15 +24,59 @@ class MainActivity : AppCompatActivity() {
 //    private val retrofit by lazy {
 //        RetrofitApi().instance()
 //    }
+    private val binding by lazy {
+        ActivityMainBinding.inflate(LayoutInflater.from(this))
+    }
+    private val fragmentIdCurrentWeatherFragment = R.id.currentWeatherFragment
+    private val fragmentIdForecastWeatherFragment = R.id.forecastWeatherFragment
+    private val fragmentIdCurrentWeatherCondition = R.id.currentWeatherConditionFragment
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test)
+
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        //binding.toolbar.inflateMenu(R.menu.main_menu)
+
+        changeFrameLayout(fragmentIdCurrentWeatherFragment, CurrentWeatherFragment())
+        changeFrameLayout(fragmentIdForecastWeatherFragment, ForecastWeatherFragment())
+        changeFrameLayout(fragmentIdCurrentWeatherCondition, CurrentWeatherCondition())
+
 
 //        button.setOnClickListener {
 //            val zip=editText.text.toString()
 //            executeNetworkCall(zip)
 //        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu,menu)
+        val item=menu?.findItem(R.id.search)
+        val search=item?.actionView as SearchView
+
+
+        item.setOnActionExpandListener(object:MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
+                Toast.makeText(applicationContext,"expand",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+                Toast.makeText(applicationContext,"close",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+        })
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun changeFrameLayout(fragmentId: Int, fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(fragmentId, fragment)
+            .commit()
     }
 
 //    private fun executeNetworkCall(zip: String) {
