@@ -2,5 +2,7 @@
     <string name="app_name">Weather</string>
     <string name="feel_like">Feel Like</string>
     <string name="wind">Wind</string>
-    <string name="today">TODAY</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="next_3_days">Next 3 Days</string>
 </resources>

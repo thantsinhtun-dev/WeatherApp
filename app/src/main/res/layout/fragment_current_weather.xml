@@ -22,43 +22,46 @@
             android:layout_height="wrap_content"
             android:text="@string/today"
             android:textColor="@color/textColor"
-            android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="@+id/currentTemperature"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/currentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_light"
             android:text="Sat 5,aug"
             android:textColor="@color/textColor"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/currentDay"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/currentWeatherImg"
             app:layout_constraintTop_toTopOf="@+id/currentDay" />
 
         <TextView
             android:id="@+id/currentTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:paddingTop="20dp"
             android:text="30 ' C"
+            android:fontFamily="@font/rubik_bold"
             android:textColor="@color/textColor"
             android:textSize="45sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageView
             android:id="@+id/currentWeatherImg"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
             android:src="@drawable/ic_cloud_circle_24"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/currentTemperature"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/currentTemperature"
             app:tint="@color/yellow" />
 
@@ -84,11 +87,6 @@
             app:layout_constraintStart_toEndOf="@+id/locationImg"
             app:layout_constraintTop_toTopOf="@+id/locationImg" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

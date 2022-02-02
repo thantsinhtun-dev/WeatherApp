@@ -36,12 +36,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
         //binding.toolbar.inflateMenu(R.menu.main_menu)
 
         changeFrameLayout(fragmentIdCurrentWeatherFragment, CurrentWeatherFragment())
         changeFrameLayout(fragmentIdForecastWeatherFragment, ForecastWeatherFragment())
         changeFrameLayout(fragmentIdCurrentWeatherCondition, CurrentWeatherCondition())
+
+
+        binding.btnSearch.setOnClickListener{
+            binding.toolbar.visibility=View.GONE
+            binding.toolbarSearchView.visibility=View.VISIBLE
+            binding.searchView.requestFocus()
+        }
+        binding.btnClose.setOnClickListener {
+            binding.searchView.clearFocus()
+            binding.searchView.setQuery("",false)
+            binding.toolbarSearchView.visibility=View.GONE
+            binding.toolbar.visibility=View.VISIBLE
+        }
+        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(applicationContext,query,Toast.LENGTH_SHORT).show()
+                binding.searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
 
 
 //        button.setOnClickListener {
@@ -51,27 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu,menu)
-        val item=menu?.findItem(R.id.search)
-        val search=item?.actionView as SearchView
 
-
-        item.setOnActionExpandListener(object:MenuItem.OnActionExpandListener{
-            override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
-                Toast.makeText(applicationContext,"expand",Toast.LENGTH_SHORT).show()
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
-                Toast.makeText(applicationContext,"close",Toast.LENGTH_SHORT).show()
-                return true
-            }
-
-        })
-
-        return super.onCreateOptionsMenu(menu)
-    }
 
     private fun changeFrameLayout(fragmentId: Int, fragment: Fragment) {
         supportFragmentManager.beginTransaction()
