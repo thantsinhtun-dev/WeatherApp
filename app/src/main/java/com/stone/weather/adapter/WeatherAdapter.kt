@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stone.weather.databinding.WeatherItemLayoutBinding
+import com.stone.weather.model.MainWeatherResponse
 
-class WeatherAdapter:RecyclerView.Adapter<WeatherViewHolder>() {
-    val list = ArrayList<String>(10)
+class WeatherAdapter(private val list:List<MainWeatherResponse>):RecyclerView.Adapter<WeatherViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
         val bindingLayout=WeatherItemLayoutBinding.inflate(layoutInflater,parent,false)
@@ -15,7 +16,7 @@ class WeatherAdapter:RecyclerView.Adapter<WeatherViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        holder.binding.itemWeather.text="20'C"
+        holder.binding.itemWeather.text=list[position].description
     }
 
     override fun getItemCount(): Int {

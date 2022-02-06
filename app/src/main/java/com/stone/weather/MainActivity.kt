@@ -2,33 +2,25 @@ package com.stone.weather
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.fragment.app.activityViewModels
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.stone.weather.databinding.ActivityMainBinding
 import com.stone.weather.network.RetrofitApi
 import com.stone.weather.ui.CurrentWeatherCondition
 import com.stone.weather.ui.CurrentWeatherFragment
 import com.stone.weather.ui.ForecastWeatherFragment
+import com.stone.weather.viewModel.CurrentWeatherViewModel
 
 class MainActivity : AppCompatActivity() {
-    //    private val textview by lazy {
-//        findViewById<TextView>(R.id.textview)
-//    }
-//    private val editText by lazy {
-//        findViewById<EditText>(R.id.edit)
-//    }
-//    private val button by lazy {
-//        findViewById<Button>(R.id.btn)
-//    }
-    private val retrofit by lazy {
-        RetrofitApi().instance()
-    }
-    private val binding by lazy {
-        ActivityMainBinding.inflate(LayoutInflater.from(this))
-    }
+
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel:CurrentWeatherViewModel by viewModels<CurrentWeatherViewModel>()
     private val fragmentIdCurrentWeatherFragment = R.id.currentWeatherFragment
     private val fragmentIdForecastWeatherFragment = R.id.forecastWeatherFragment
     private val fragmentIdCurrentWeatherCondition = R.id.currentWeatherConditionFragment
@@ -37,9 +29,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(binding.root)
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
         //binding.toolbar.inflateMenu(R.menu.main_menu)
 
+        viewModel.getCurrentWeather("taungoo")
 
         changeFrameLayout(fragmentIdCurrentWeatherFragment, CurrentWeatherFragment())
         changeFrameLayout(fragmentIdForecastWeatherFragment, ForecastWeatherFragment())

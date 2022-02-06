@@ -10,10 +10,16 @@ interface ApiService {
     @GET("weather")
     fun getWeatherList(
         @Query("zip") zipCode: String,
-        ):Call<WeatherResponse>
+    ): Call<WeatherResponse>
 
     @GET("weather")
     fun getCurrentWeatherByCityName(
-        @Query("q") cityName:String
-    ):Call<CurrentWeatherResponse>
+        @Query("q") cityName: String
+    ): Call<CurrentWeatherResponse>
+
+    @GET("forecast")
+    fun getForecastWeatherByCityName(
+        @Query("q") cityName: String
+    ): Call<CurrentWeatherResponse>
+
 }

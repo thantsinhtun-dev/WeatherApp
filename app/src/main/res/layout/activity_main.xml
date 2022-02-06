@@ -1,112 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_main"
-    tools:context=".MainActivity">
+<layout>
 
-    <LinearLayout
-        android:id="@+id/actionBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:orientation="horizontal"
-        app:title=""
-        android:visibility="visible">
-        <ImageView
-            android:src="@drawable/ic_setting"
-            android:layout_width="40dp"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp"
-            app:tint="@color/textColor"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:text="Weather Forecast"
-            android:textSize="18sp"
-            android:textColor="@color/textColor"
-            android:gravity="center_vertical"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:id="@+id/btnSearch"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp"
-            app:tint="@color/textColor"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_search"
-            android:layout_gravity="end"
-            />
+    <data>
 
-    </androidx.appcompat.widget.Toolbar>
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarSearchView"
-        android:visibility="gone"
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize">
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_main"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:id="@+id/actionBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:title="">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:src="@drawable/ic_setting"
+                    app:tint="@color/textColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:text="Weather Forecast"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/btnSearch"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/textColor" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:paddingStart="0dp"
+                    app:closeIcon="@null"
+                    app:iconifiedByDefault="false"
+                    app:queryHint="Search by city"
+                    app:searchIcon="@null" />
+
+                <ImageView
+                    android:id="@+id/btnClose"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:src="@drawable/ic_close_24" />
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:queryHint="Search by city"
-            android:focusable="true"
-            android:paddingStart="0dp"
-            app:closeIcon="@null"
-            app:searchIcon="@null"
-            app:iconifiedByDefault="false"/>
-        <ImageView
-            android:id="@+id/btnClose"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_close_24"
-            />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <FrameLayout
+            android:id="@+id/currentWeatherFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionBarLayout" />
 
-    </androidx.appcompat.widget.Toolbar>
+        <FrameLayout
+            android:id="@+id/currentWeatherConditionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/forecastWeatherFragment" />
 
-    </LinearLayout>
+        <FrameLayout
+            android:id="@+id/forecastWeatherFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/currentWeatherFragment" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <FrameLayout
-        android:id="@+id/currentWeatherFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/actionBarLayout" />
-
-    <FrameLayout
-        android:id="@+id/currentWeatherConditionFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/forecastWeatherFragment" />
-
-    <FrameLayout
-        android:id="@+id/forecastWeatherFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/currentWeatherFragment" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

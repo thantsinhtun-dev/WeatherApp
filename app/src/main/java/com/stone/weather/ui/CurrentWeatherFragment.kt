@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.stone.weather.R
 import com.stone.weather.databinding.FragmentCurrentWeatherBinding
-import com.stone.weather.viewModel.CurrentWeatherFragmentVM
+import com.stone.weather.viewModel.CurrentWeatherViewModel
 
-class CurrentWeatherFragment : Fragment() {
+class CurrentWeatherFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCurrentWeatherBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,17 +29,19 @@ class CurrentWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewM = CurrentWeatherFragmentVM()
 
-        viewM.getCurrentWeather("taungoo").observe(this.viewLifecycleOwner) {
+
+
+        viewModel.currentWeatherResponse.observe(this.viewLifecycleOwner) {
 
 
             binding.temperature = it.mainStatus.temp
             binding.city = it.name
             binding.weatherIcon = it.weather[0].icon
 
-            Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+
         }
+
 
 
     }
