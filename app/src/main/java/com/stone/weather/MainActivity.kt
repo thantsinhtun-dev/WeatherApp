@@ -1,12 +1,14 @@
 package com.stone.weather
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.stone.weather.databinding.ActivityMainBinding
+import com.stone.weather.network.RetrofitApi
 import com.stone.weather.ui.CurrentWeatherCondition
 import com.stone.weather.ui.CurrentWeatherFragment
 import com.stone.weather.ui.ForecastWeatherFragment
@@ -21,9 +23,9 @@ class MainActivity : AppCompatActivity() {
 //    private val button by lazy {
 //        findViewById<Button>(R.id.btn)
 //    }
-//    private val retrofit by lazy {
-//        RetrofitApi().instance()
-//    }
+    private val retrofit by lazy {
+        RetrofitApi().instance()
+    }
     private val binding by lazy {
         ActivityMainBinding.inflate(LayoutInflater.from(this))
     }
@@ -38,9 +40,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         //binding.toolbar.inflateMenu(R.menu.main_menu)
 
+
         changeFrameLayout(fragmentIdCurrentWeatherFragment, CurrentWeatherFragment())
         changeFrameLayout(fragmentIdForecastWeatherFragment, ForecastWeatherFragment())
         changeFrameLayout(fragmentIdCurrentWeatherCondition, CurrentWeatherCondition())
+
+//        runOnUiThread {
+//            val geoCoder = Geocoder(this, Locale.getDefault())
+//            val addresses: List<Address> = geoCoder.getFromLocation(18.9333, 96.4333, 1)
+//
+//            val result = addresses[0].locality
+//            try {
+//
+//
+//                Log.i("MainLocation", result)
+//            }catch (e:NullPointerException) {
+//                Toast.makeText(applicationContext, result, Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
 
         binding.btnSearch.setOnClickListener{
@@ -67,10 +84,7 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-//        button.setOnClickListener {
-//            val zip=editText.text.toString()
-//            executeNetworkCall(zip)
-//        }
+
     }
 
 

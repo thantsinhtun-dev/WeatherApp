@@ -1,4 +1,4 @@
-package com.stone.weather
+package com.stone.weather.network
 
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -11,7 +11,7 @@ class AppInterceptor :Interceptor{
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val url=chain.request().url()
+        val url=chain.request().url
         val newUrl=url.newBuilder()
             .addQueryParameter("appid", API_KEY)
             .addQueryParameter("units", UNIT)

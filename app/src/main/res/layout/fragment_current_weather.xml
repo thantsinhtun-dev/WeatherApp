@@ -1,92 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="5dp"
-    app:cardCornerRadius="15dp"
-    app:cardBackgroundColor="#25265f">
+<layout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/currentWeather"
+    <data>
+
+        <variable
+            name="temperature"
+            type="String" />
+        <variable
+            name="weatherIcon"
+            type="String" />
+        <variable
+            name="city"
+            type="String" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:elevation="5dp"
+        app:cardBackgroundColor="#25265f"
+        app:cardCornerRadius="15dp">
 
-        <TextView
-            android:id="@+id/currentDay"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/currentWeather"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/today"
-            android:textColor="@color/textColor"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="@+id/currentTemperature"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/currentDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_light"
-            android:text="Sat 5,aug"
-            android:textColor="@color/textColor"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/currentDay"
-            app:layout_constraintEnd_toEndOf="@+id/currentWeatherImg"
-            app:layout_constraintTop_toTopOf="@+id/currentDay" />
-
-        <TextView
-            android:id="@+id/currentTemperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:paddingTop="20dp"
-            android:text="30 ' C"
-            android:fontFamily="@font/rubik_bold"
-            android:textColor="@color/textColor"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ImageView
-            android:id="@+id/currentWeatherImg"
-            android:layout_width="120dp"
-            android:layout_height="110dp"
-            android:src="@drawable/ic_cloud_circle_24"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/currentTemperature"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/currentTemperature"
-            app:tint="@color/yellow" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/locationImg"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_location_on_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/currentTemperature"
-            app:layout_constraintTop_toBottomOf="@+id/currentWeatherImg"
-            app:tint="@color/yellow" />
+            <TextView
+                android:id="@+id/currentDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/today"
+                android:textColor="@color/textColor"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="@+id/currentTemperature"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/currentLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:paddingStart="2dp"
-            android:text="taungoo, Bago, Myanmar"
-            android:textColor="@color/yellow"
-            app:layout_constraintBottom_toBottomOf="@+id/locationImg"
-            app:layout_constraintStart_toEndOf="@+id/locationImg"
-            app:layout_constraintTop_toTopOf="@+id/locationImg" />
+            <TextView
+                android:id="@+id/currentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_light"
+                android:text="Sat 5,aug"
+                android:textColor="@color/textColor"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/currentDay"
+                app:layout_constraintEnd_toEndOf="@+id/currentWeatherImg"
+                app:layout_constraintTop_toTopOf="@+id/currentDay" />
+
+            <TextView
+                android:id="@+id/currentTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingTop="20dp"
+                app:setTemp="@{temperature}"
+                android:textColor="@color/textColor"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/currentWeatherImg"
+                android:layout_width="120dp"
+                android:layout_height="110dp"
+                android:layout_marginEnd="20dp"
+                android:adjustViewBounds="true"
+                app:ImageUrl="@{weatherIcon}"
+                app:error="@{@drawable/ic_cloud_circle_24}"
+                app:tint="@color/yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/currentTemperature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/currentTemperature"
+                 />
+
+            <ImageView
+                android:id="@+id/locationImg"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_location_on_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/currentTemperature"
+                app:layout_constraintTop_toBottomOf="@+id/currentWeatherImg"
+                app:tint="@color/yellow" />
+
+            <TextView
+                android:id="@+id/currentLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingStart="2dp"
+                android:text="@{city}"
+                android:textColor="@color/yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/locationImg"
+                app:layout_constraintStart_toEndOf="@+id/locationImg"
+                app:layout_constraintTop_toTopOf="@+id/locationImg" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
