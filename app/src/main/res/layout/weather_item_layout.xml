@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="temperature"
+            type="String" />
+        <variable
+            name="time"
+            type="String" />
+        <variable
+            name="weatherIcon"
+            type="String" />
+
+    </data>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
@@ -23,6 +36,8 @@
             android:layout_height="65dp"
             android:layout_gravity="end"
             android:layout_marginEnd="8dp"
+            app:ImageUrl="@{weatherIcon}"
+            app:error="@{@drawable/ic_cloud_circle_24}"
             android:scaleType="fitXY"
             android:src="@drawable/ic_cloud_circle_24"
             app:tint="@color/yellow" />
@@ -34,6 +49,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/rubik_light"
             android:text="10:40 PM"
+            app:setTime="@{time}"
             android:textColor="@color/textColor"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,9 +62,11 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/rubik_regular"
             android:text="20'C"
+            app:setTemp="@{temperature}"
             android:textColor="@color/textColor"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_weatherTime" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+</layout>

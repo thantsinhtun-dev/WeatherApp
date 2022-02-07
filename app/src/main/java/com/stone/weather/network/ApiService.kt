@@ -1,6 +1,8 @@
 package com.stone.weather.network
 
 import com.stone.weather.model.CurrentWeatherResponse
+import com.stone.weather.model.ForecastListResponse
+import com.stone.weather.model.ForecastWeatherResponse
 import com.stone.weather.model.WeatherResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -20,6 +22,6 @@ interface ApiService {
     @GET("forecast")
     fun getForecastWeatherByCityName(
         @Query("q") cityName: String
-    ): Call<CurrentWeatherResponse>
+    ): Call<ForecastWeatherResponse>
 
 }

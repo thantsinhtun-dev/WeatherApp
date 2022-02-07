@@ -25,13 +25,14 @@
 
         <ImageView
             android:id="@+id/condition_weatherIcon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:elevation="2dp"
             app:ImageUrl="@{weatherIcon}"
             app:error="@{@drawable/ic_cloud_circle_24}"
             android:src="@drawable/ic_cloud_circle_24"
             android:translationZ="2dp"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toTopOf="@+id/weatherConditionLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +84,7 @@
                         android:id="@+id/label_feel_like"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{feelLike}"
+                        app:setTemp="@{feelLike}"
                         android:textColor="@color/textColor" />
                 </LinearLayout>
 
@@ -108,7 +109,7 @@
                         android:id="@+id/label_humidity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{humidity}"
+                        android:text='@{humidity+" %"}'
                         android:textColor="@color/textColor" />
                 </LinearLayout>
 
@@ -133,7 +134,7 @@
                         android:id="@+id/label_wind"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{wind}"
+                        android:text='@{wind+" m/s"}'
                         android:textColor="@color/textColor" />
                 </LinearLayout>
 
@@ -158,7 +159,7 @@
                         android:id="@+id/label_pressure"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{pressure}"
+                        android:text='@{pressure+" hpa"}'
                         android:textColor="@color/textColor" />
                 </LinearLayout>
 

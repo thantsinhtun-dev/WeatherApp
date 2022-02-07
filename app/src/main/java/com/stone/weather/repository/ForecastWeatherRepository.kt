@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.stone.weather.model.CurrentWeatherResponse
+import com.stone.weather.model.ForecastListResponse
+import com.stone.weather.model.ForecastWeatherResponse
 import com.stone.weather.network.ApiService
 import com.stone.weather.network.RetrofitApi
 import retrofit2.Call
@@ -12,24 +14,25 @@ import retrofit2.Response
 
 class ForecastWeatherRepository {
     private val apiService= RetrofitApi().instance().create(ApiService::class.java)
-    private val tempData= MutableLiveData<CurrentWeatherResponse>()
-    fun getForecastWeather(city:String): LiveData<CurrentWeatherResponse> {
+    private val tempData= MutableLiveData<ForecastWeatherResponse>()
+    fun getForecastWeather(city:String): LiveData<ForecastWeatherResponse> {
         apiService.getForecastWeatherByCityName(city)
-            .enqueue(object : Callback<CurrentWeatherResponse> {
+            .enqueue(object : Callback<ForecastWeatherResponse> {
                 override fun onResponse(
-                    call: Call<CurrentWeatherResponse>,
-                    response: Response<CurrentWeatherResponse>
+                    call: Call<ForecastWeatherResponse>,
+                    response: Response<ForecastWeatherResponse>
                 ) {
                     if (response.isSuccessful){
                         response.body()?.let {
                             tempData.value=it
                         }
                     }
-                    Log.i("CurrentWeatherRepository","successful")
+                    Log.i("ForecastWeatherRepository","successful")
+
                 }
 
-                override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {
-                    Log.i("CurrentWeatherRepository",t.message.toString())
+                override fun onFailure(call: Call<ForecastWeatherResponse>, t: Throwable) {
+                    Log.i("ForecastWeatherRepository",t.message.toString())
                 }
             })
         return tempData

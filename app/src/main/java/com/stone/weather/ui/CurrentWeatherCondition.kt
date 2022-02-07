@@ -37,8 +37,10 @@ class CurrentWeatherCondition : BaseFragment(){
 
         viewModel.currentWeatherResponse.observe(viewLifecycleOwner) {
             binding.feelLike = it.mainStatus.feelLike
-
-
+            binding.wind=it.wind.speed
+            binding.humidity=it.mainStatus.humidity
+            binding.pressure=it.mainStatus.pressure
+            binding.weatherIcon=it.weather[0].icon
         }
     }
 

@@ -10,9 +10,10 @@
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.1645" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_current_weather.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_current_weather_condition.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/fragment_forecast_weather.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_forecast_weather.xml" value="0.43703703703703706" />
         <entry key="app/src/main/res/layout/test.xml" value="0.2" />
         <entry key="app/src/main/res/layout/weather_item_layout.xml" value="0.33" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.1" />

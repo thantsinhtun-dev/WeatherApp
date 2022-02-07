@@ -1,28 +1,33 @@
 package com.stone.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import com.stone.weather.R
 import com.stone.weather.adapter.WeatherAdapter
 import com.stone.weather.databinding.FragmentForecastWeatherBinding
 import com.stone.weather.model.CurrentWeatherResponse
+import com.stone.weather.model.ForecastListResponse
 import com.stone.weather.model.MainWeatherResponse
+import okhttp3.internal.notify
+import okhttp3.internal.notifyAll
 
 class ForecastWeatherFragment:BaseFragment() {
-    private val binding by lazy {
-        FragmentForecastWeatherBinding.inflate(LayoutInflater.from(this.context))
-    }
-    lateinit var adapter:WeatherAdapter
+    private lateinit var binding:FragmentForecastWeatherBinding
+    private val adapter=WeatherAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding=DataBindingUtil.inflate(inflater, R.layout.fragment_forecast_weather,container,false)
         return binding.root
     }
 
@@ -30,13 +35,17 @@ class ForecastWeatherFragment:BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        var list= ArrayList<MainWeatherResponse>()
         viewModel.weatherForecast.observe(viewLifecycleOwner){
-            list= it.weather as ArrayList<MainWeatherResponse>
-            Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
-        }
-        adapter= WeatherAdapter(list)
 
+            adapter.setWeatherList(it.weatherList)
+            Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+            Log.i("forecastFragment",it.weatherList.toString())
+        }
+
+
+
+
+        binding.recycler.setHasFixedSize(true)
         binding.recycler.adapter=adapter
 
     }
