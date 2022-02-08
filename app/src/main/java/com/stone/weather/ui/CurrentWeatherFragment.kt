@@ -1,6 +1,7 @@
 package com.stone.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,8 @@ class CurrentWeatherFragment : BaseFragment() {
             binding.temperature = it.mainStatus.temp
             binding.city = it.name
             binding.weatherIcon = it.weather[0].icon
+            viewModel.currentReady=true
+            Log.i("Content","Current Weather is ready")
 
 
         }

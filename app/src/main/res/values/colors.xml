@@ -13,4 +13,6 @@
     <color name="gray">#030311</color>
     <color name="teal">#A8B0F4</color>
     <color name="whiteColor">#D1D6F6</color>
+
+    <color name="splashBackground">#FC1E1D5A</color>
 </resources>

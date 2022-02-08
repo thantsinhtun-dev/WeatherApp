@@ -15,10 +15,30 @@
         <item name="autoCompleteTextViewStyle">@style/SearchAutoCompleteTextView</item>
         <item name="android:textViewStyle">@style/RubikTextViewStyle</item>
 
+        <!--Splash Screen-->
+<!--        <item name="android:windowSplashScreenBackground">@color/splashBackground</item>-->
+
     </style>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        // Set the splash screen background, animated icon, and animation duration.
+        <item name="windowSplashScreenBackground">@color/splashBackground</item>
+
+        // Use windowSplashScreenAnimatedIcon to add either a drawable or an
+        // animated drawable. One of these is required.
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+
+
+
+
+        // Set the theme of the Activity that directly follows your splash screen.
+        <item name="postSplashScreenTheme">@style/Theme.Weather</item>  # Required.
+    </style>
+
+
     <style name="RubikTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/rubik_regular</item>
     </style>
+
     <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorHint">#77FFFFFF</item>

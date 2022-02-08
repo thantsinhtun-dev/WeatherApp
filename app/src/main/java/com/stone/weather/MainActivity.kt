@@ -1,13 +1,16 @@
 package com.stone.weather
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.activityViewModels
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.stone.weather.databinding.ActivityMainBinding
@@ -27,10 +30,33 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
+        val content: View = findViewById(android.R.id.content)
+        content.viewTreeObserver.addOnPreDrawListener(
+            object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    // Check if the initial data is ready.
+                    return if (viewModel.isReady()) {
+                        // The content is ready; start drawing.
+                        Log.i("Content", "contentReady")
+                        content.viewTreeObserver.removeOnPreDrawListener(this)
+                        true
+                    } else {
+                        // The content is not ready; suspend.
+                        Log.i("Content", "contentNotReady")
+                        false
+                    }
+                }
+            }
+        )
+
+
 
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
         //binding.toolbar.inflateMenu(R.menu.main_menu)
+
 
         viewModel.getCurrentWeather("taungoo")
 

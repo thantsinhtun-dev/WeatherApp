@@ -1,6 +1,7 @@
 package com.stone.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,9 @@ class CurrentWeatherCondition : BaseFragment(){
             binding.humidity=it.mainStatus.humidity
             binding.pressure=it.mainStatus.pressure
             binding.weatherIcon=it.weather[0].icon
+
+            viewModel.conditionReady=true
+            Log.i("Content","Current Condition is ready")
         }
     }
 

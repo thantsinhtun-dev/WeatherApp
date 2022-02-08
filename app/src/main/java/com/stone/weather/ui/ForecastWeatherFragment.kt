@@ -38,8 +38,8 @@ class ForecastWeatherFragment:BaseFragment() {
         viewModel.weatherForecast.observe(viewLifecycleOwner){
 
             adapter.setWeatherList(it.weatherList)
-            Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
-            Log.i("forecastFragment",it.weatherList.toString())
+            viewModel.forecastReady=true
+            Log.i("Content","Forecast is ready")
         }
 
 
