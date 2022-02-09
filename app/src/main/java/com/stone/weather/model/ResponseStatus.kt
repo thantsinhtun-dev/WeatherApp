@@ -2,5 +2,6 @@ package com.stone.weather.model
 
 enum class ResponseStatus {
     SUCCESS,
-    ERROR
+    ERROR,
+    NETWORK_ERROR
 }

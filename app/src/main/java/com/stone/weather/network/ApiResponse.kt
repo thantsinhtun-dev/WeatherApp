@@ -15,5 +15,10 @@ sealed class ApiResponse<out T>(val status: ResponseStatus, val data: T?, val me
         data = null,
         message = error
     )
+    data class NetWorkError<out R>(val error: String):ApiResponse<R>(
+        status = ResponseStatus.NETWORK_ERROR,
+        data = null,
+        message = error
+    )
 
 }

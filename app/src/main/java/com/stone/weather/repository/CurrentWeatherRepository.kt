@@ -67,7 +67,9 @@ class CurrentWeatherRepository :BaseRepository(){
                 }
 
                 override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {
-                    Log.i("CurrentWeatherRepository",t.message.toString())
+                    result.postValue(ApiResponse.NetWorkError(
+                        "Connection Problem"
+                    ))
                 }
             })
         return result
