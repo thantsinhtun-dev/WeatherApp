@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.stone.weather.R
 import com.stone.weather.databinding.FragmentCurrentWeatherConditionBinding
+import com.stone.weather.model.CurrentWeatherResponse
 import com.stone.weather.viewModel.CurrentWeatherViewModel
 
 
@@ -36,7 +37,10 @@ class CurrentWeatherCondition : BaseFragment(){
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewModel.currentWeatherResponse.observe(viewLifecycleOwner) {
+        viewModel.apiResponse.observe(this.viewLifecycleOwner) {response->
+
+            val it=response.data as CurrentWeatherResponse
+
             binding.feelLike = it.mainStatus.feelLike
             binding.wind=it.wind.speed
             binding.humidity=it.mainStatus.humidity

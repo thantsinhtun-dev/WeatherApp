@@ -40,6 +40,7 @@ class ForecastWeatherFragment:BaseFragment() {
             adapter.setWeatherList(it.weatherList)
             viewModel.forecastReady=true
             Log.i("Content","Forecast is ready")
+
         }
 
 

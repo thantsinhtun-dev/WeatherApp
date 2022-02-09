@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.stone.weather.R
 import com.stone.weather.databinding.FragmentCurrentWeatherBinding
+import com.stone.weather.model.CurrentWeatherResponse
 import com.stone.weather.viewModel.CurrentWeatherViewModel
 
 class CurrentWeatherFragment : BaseFragment() {
@@ -33,9 +34,12 @@ class CurrentWeatherFragment : BaseFragment() {
 
 
 
-        viewModel.currentWeatherResponse.observe(this.viewLifecycleOwner) {
+        viewModel.apiResponse.observe(this.viewLifecycleOwner) {response->
+
+            val it=response.data as CurrentWeatherResponse
 
 
+            viewModel.currentReady=true
             binding.temperature = it.mainStatus.temp
             binding.city = it.name
             binding.weatherIcon = it.weather[0].icon

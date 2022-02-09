@@ -13,7 +13,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.stone.weather.databinding.ActivityMainBinding
+import com.stone.weather.model.ResponseStatus
+import com.stone.weather.network.ApiResponse
 import com.stone.weather.network.RetrofitApi
 import com.stone.weather.ui.CurrentWeatherCondition
 import com.stone.weather.ui.CurrentWeatherFragment
@@ -58,8 +61,20 @@ class MainActivity : AppCompatActivity() {
         //binding.toolbar.inflateMenu(R.menu.main_menu)
 
 
-        viewModel.getCurrentWeather("taungoo")
 
+
+        viewModel.getCurrentWeather("Yangon").observe(this@MainActivity){
+            when(it.status){
+                ResponseStatus.SUCCESS-> {
+                    Toast.makeText(applicationContext,"success",Toast.LENGTH_SHORT).show()
+                    Log.i("MainLog","success")
+                }
+                ResponseStatus.ERROR-> {
+                    Toast.makeText(applicationContext,it.message,Toast.LENGTH_LONG).show()
+                    Log.i("MainLog","error")
+                }
+            }
+        }
         changeFrameLayout(fragmentIdCurrentWeatherFragment, CurrentWeatherFragment())
         changeFrameLayout(fragmentIdForecastWeatherFragment, ForecastWeatherFragment())
         changeFrameLayout(fragmentIdCurrentWeatherCondition, CurrentWeatherCondition())
@@ -92,7 +107,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Toast.makeText(applicationContext,query,Toast.LENGTH_SHORT).show()
+
+
+                viewModel.getCurrentWeather(query!!)
                 binding.searchView.clearFocus()
                 return true
             }
