@@ -46,8 +46,6 @@ class CurrentWeatherCondition : BaseFragment() {
                 binding.humidity = it.mainStatus.humidity
                 binding.pressure = it.mainStatus.pressure
                 binding.weatherIcon = it.weather[0].icon
-
-                viewModel.conditionReady = true
                 Log.i("Content", "Current Condition is ready")
             }
         }

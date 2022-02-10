@@ -13,11 +13,13 @@ import com.stone.weather.R
 import com.stone.weather.databinding.FragmentCurrentWeatherBinding
 import com.stone.weather.model.CurrentWeatherResponse
 import com.stone.weather.model.ResponseStatus
+import com.stone.weather.utils.AppUtils
 import com.stone.weather.viewModel.CurrentWeatherViewModel
 
 class CurrentWeatherFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCurrentWeatherBinding
+    private var weatherDescription=""
 
 
     override fun onCreateView(
@@ -37,21 +39,32 @@ class CurrentWeatherFragment : BaseFragment() {
 
         viewModel.apiResponse.observe(this.viewLifecycleOwner) {response->
             if (response.status.equals(ResponseStatus.SUCCESS)) {
+
                 val it = response.data as CurrentWeatherResponse
-                viewModel.currentReady = true
                 binding.temperature = it.mainStatus.temp
                 binding.city = it.name
                 binding.weatherIcon = it.weather[0].icon
-                viewModel.currentReady = true
+                weatherDescription=it.weather[0].description
+
+
                 Log.i("Content", "Current Weather is ready")
             }
 
             
         }
+        binding.currentDate.text=AppUtils.getCurrentDay()
+        binding.currentWeatherImg.setOnClickListener {
+            Toast.makeText(context,weatherDescription,Toast.LENGTH_SHORT).show()
+        }
+        binding.currentWeatherImg.setOnLongClickListener {
+            Toast.makeText(context,weatherDescription,Toast.LENGTH_LONG).show()
+            return@setOnLongClickListener true
+        }
 
 
 
     }
+
 
 
 }

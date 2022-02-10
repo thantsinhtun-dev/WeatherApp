@@ -13,19 +13,9 @@ class CurrentWeatherViewModel : ViewModel() {
 
     private val currentWeatherRepository = CurrentWeatherRepository()
     private val forecastWeatherRepository = ForecastWeatherRepository()
-    var currentWeatherResponse = MutableLiveData<CurrentWeatherResponse>()
     var weatherForecast = MutableLiveData<ForecastWeatherResponse>()
 
-    var forecastReady = false
-    var currentReady = false
-    var conditionReady = false
 
-    fun isReady(): Boolean {
-        if (forecastReady && currentReady && conditionReady) {
-            return true
-        }
-        return false
-    }
 
     fun getCurrentWeather(city: String): LiveData<ApiResponse<Any>> {
         apiResponse.addSource(

@@ -116,7 +116,6 @@ class MainActivity : AppCompatActivity() {
     }
     private fun showNetwork(){
 
-
         binding.currentWeatherFragment.visibility = View.GONE
         binding.currentWeatherConditionFragment.visibility = View.GONE
         binding.forecastWeatherFragment.visibility = View.GONE

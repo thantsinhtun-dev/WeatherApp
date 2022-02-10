@@ -49,6 +49,7 @@
                 android:text="Sat 5,aug"
                 android:textColor="@color/textColor"
                 android:textSize="14sp"
+                android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="@id/currentDay"
                 app:layout_constraintEnd_toEndOf="@+id/currentWeatherImg"
                 app:layout_constraintTop_toTopOf="@+id/currentDay" />

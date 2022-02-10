@@ -39,9 +39,8 @@ class BindingAdapter {
         @BindingAdapter("app:setTime")
         fun setTime(view: TextView, string: String?) {
 
-            val formatter = ofPattern("yyyy-MM-dd HH:mm:ss")
-            val date = LocalTime.parse(string, formatter)//LocalDate()//LocalDateTime
-            view.text = date.toString()
+
+            view.text = AppUtils.formatDate(string)
 
         }
 
