@@ -13,6 +13,8 @@ WeaterApp is a simple weather app and easy to use and use some APIs from [Openwe
 
 ## Design
 
-Inspired by [Abdullah Sajol](https://dribbble.com/shots/16361858-Weather-Forecast-Mobile-application) and icons from [FlatIcon](https://flaticon.com)
+Inspired by [Abdullah Sajol](https://dribbble.com/shots/16361858-Weather-Forecast-Mobile-application) and icons take from [FlatIcon](https://flaticon.com)
+
+## License
 
 
